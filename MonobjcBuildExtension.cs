@@ -67,23 +67,32 @@ namespace MonoDevelop.Monobjc
 			string exeName = Path.GetFileNameWithoutExtension(conf.OutputAssembly);
 			
 			// Write Info.plist into 'Contents' directory
+			
 			monitor.BeginTask("Updating application manifest", 0);
 			var doc = new PlistDocument();
-			var docRoot = new PlistDictionary();
-			
-			// FIXME: Read all these from settings.
-			//docRoot["CFBundleDisplayName"]         = 
-			docRoot["CFBundleIdentifier"]            = String.Format("com.yourcompany.{0}", proj.Name);
-			docRoot["CFBundleVersion"]               = "1.0"; // Read from proj settings
-			//docRoot["CFBundleIconFile"]            =
-			//docRoot["NSMainNibFile"]               =
-			docRoot["CFBundleDevelopmentRegion"]     = "English"; // Read from settings
-			
-  		docRoot["CFBundleExecutable"]            = exeName;
+			var docRoot = new PlistDictionary();			
+  			docRoot["CFBundleExecutable"]            = exeName;
 			docRoot["CFBundleName"]                  = proj.Name;
 			docRoot["CFBundleInfoDictionaryVersion"] = "6.0";
 			docRoot["CFBundlePackageType"]           = "APPL";
+			docRoot["CFBundleDisplayName"]           = proj.BundleDisplayName ?? proj.Name;
+			docRoot["CFBundleIdentifier"]            = proj.BundleIdentifier ?? String.Format("com.yourcompany.{0}", proj.Name);
+			docRoot["CFBundleVersion"]               = proj.BundleVersion ?? "1.0";
+			docRoot["CFBundleDevelopmentRegion"]     = proj.BundleDevelopmentRegion ?? "English";
+			
+			FilePath icon = proj.BundleIcon.ToRelative (proj.BaseDirectory);
+			if (!(icon.IsNullOrEmpty || icon.ToString () == "."))
+				docRoot["CFBundleIconFile"] = icon.FileName;
+			
+			if (!String.IsNullOrEmpty (proj.MainNibFile.ToString ())) {
+				string mainNib = proj.MainNibFile.ToRelative (proj.BaseDirectory);
+				if (mainNib.EndsWith (".nib") || mainNib.EndsWith (".xib"))
+				    mainNib = mainNib.Substring (0, mainNib.Length - 4).Replace ('\\', '/');
+				docRoot["NSMainNibFile"] = mainNib;
+			};
+			
 			doc.Root = docRoot;
+			
 			var plistOut = conf.ContentsDirectory.Combine("Info.plist");
 			using (XmlTextWriter writer = new XmlTextWriter(plistOut, Encoding.UTF8)) {
 				doc.Write(writer);

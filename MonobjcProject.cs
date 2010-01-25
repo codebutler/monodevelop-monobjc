@@ -41,11 +41,99 @@ namespace MonoDevelop.Monobjc
 {
 	public class MonobjcProject : DotNetProject
 	{
+		#region Properties
+		
+		[ProjectPathItemProperty ("MainNibFile")]
+		string mainNibFile;
+		
+		[ItemProperty ("BundleDevelopmentRegion")]
+		string bundleDevelopmentRegion;
+		
+		[ItemProperty ("BundleIdentifier")]
+		string bundleIdentifier;
+		
+		[ItemProperty ("BundleVersion")]
+		string bundleVersion;
+		
+		[ItemProperty ("BundleDisplayName")]
+		string bundleDisplayName;
+		
+		[ProjectPathItemProperty ("BundleIcon")]
+		string bundleIcon;
+		
 		public override string ProjectType {
-			get {
-				return "Monobjc";
+			get { return "Monobjc"; }
+		}
+		
+		public FilePath MainNibFile {
+			get { return mainNibFile; }
+			set {
+				if (value == (FilePath) mainNibFile)
+					return;
+				NotifyModified ("MainNibFile");
+				mainNibFile = value;
 			}
 		}
+		
+		public string BundleDevelopmentRegion {
+			get { return bundleDevelopmentRegion; }
+			set {
+				if (value == "English" || value == "")
+					value = null;
+				if (value == bundleDevelopmentRegion)
+					return;
+				NotifyModified ("BundleDevelopmentRegion");
+				bundleDevelopmentRegion = value;
+			}
+		}
+		
+		public string BundleIdentifier {
+			get { return bundleIdentifier; }
+			set {
+				if (value == "")
+					value = null;
+				if (value == bundleIdentifier)
+					return;
+				NotifyModified ("BundleIdentifier");
+				bundleIdentifier = value;
+			}
+		}
+		
+		public string BundleVersion {
+			get { return bundleVersion; }
+			set {
+				if (value == "")
+					value = null;
+				if (value == bundleVersion)
+					return;
+				NotifyModified ("BundleVersion");
+				bundleVersion = value;
+			}
+		}
+		
+		public string BundleDisplayName {
+			get { return bundleDisplayName; }
+			set {
+				if (value == "")
+					value = null;
+				if (value == bundleDisplayName)
+					return;
+				NotifyModified ("BundleDisplayName");
+				bundleDisplayName = value;
+			}
+		}
+		
+		public FilePath BundleIcon {
+			get { return bundleIcon; }
+			set {
+				if (value == (FilePath) bundleIcon)
+					return;
+				NotifyModified ("BundleIcon");
+				bundleIcon = value;
+			}
+		}
+		
+		#endregion
 		
 		public MonobjcProject (string languageName) : base (languageName)
 		{

@@ -39,8 +39,20 @@
 		<Class class="MonoDevelop.Monobjc.MonobjcBuildExtension" insertafter="MidStep" />
 	</Extension>
 
-  <Extension path = "/MonoDevelop/Core/ExecutionHandlers">
-    <ExecutionHandler id="Monobjc" class = "MonoDevelop.Monobjc.MonobjcExecutionHandler"/>
-  </Extension>
-
+	<Extension path = "/MonoDevelop/Core/ExecutionHandlers">
+		<ExecutionHandler id="Monobjc" class = "MonoDevelop.Monobjc.MonobjcExecutionHandler"/>
+	</Extension>
+  
+  	<Extension path = "/MonoDevelop/ProjectModel/Gui/ItemOptionPanels/Build">
+		<Condition id="ItemType" value="MonoDevelop.Monobjc.MonobjcProject">
+			<Section id = "MonobjcApplicationOptions" _label = "Monobjc Application" icon="monobjc" >
+				<Panel id="MonobjcMiscOptions" class = "MonoDevelop.Monobjc.Gui.MonobjcOptionsPanel" />
+			</Section>
+		</Condition>
+	</Extension>
+	
+	<Extension path = "/MonoDevelop/Core/StockIcons">
+		<StockIcon stockid = "monobjc" resource = "monobjc-16.png" size="Menu" />
+		<StockIcon stockid = "monobjc" resource = "monobjc-24.png" size="Button" />
+	</Extension>
 </Addin>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="3.5" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -31,6 +31,17 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Mono.Posix" />
+    <Reference Include="gtk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
+    <Reference Include="MonoDevelop.MacDev, Version=2.2.0.0, Culture=neutral, PublicKeyToken=null">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>contrib\MonoDevelop.MacDev.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="gdk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
     <Reference Include="MonoDevelop.Core, Version=2.2.0.0, Culture=neutral">
       <Package>monodevelop</Package>
     </Reference>
@@ -46,14 +57,6 @@
     <Reference Include="MonoDevelop.Projects.Gui, Version=2.2.0.0, Culture=neutral">
       <Package>monodevelop</Package>
     </Reference>
-    <Reference Include="System.Xml" />
-    <Reference Include="Mono.Posix" />
-    <Reference Include="gtk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
-    <Reference Include="MonoDevelop.MacDev, Version=2.2.0.0, Culture=neutral, PublicKeyToken=null">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>contrib\MonoDevelop.MacDev.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AssemblyInfo.cs" />
@@ -64,6 +67,9 @@
     <Compile Include="MonobjcProject.cs" />
     <Compile Include="MonobjcProjectBinding.cs" />
     <Compile Include="MonobjcProjectConfiguration.cs" />
+    <Compile Include="Gui\MonobjcOptionsPanel.cs" />
+    <Compile Include="gtk-gui\generated.cs" />
+    <Compile Include="gtk-gui\MonoDevelop.Monobjc.Gui.MonobjcOptionsPanelWidget.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -74,5 +80,19 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <LogicalName>MonoDevelop.Monobjc.addin.xml</LogicalName>
     </EmbeddedResource>
+    <EmbeddedResource Include="gtk-gui\gui.stetic">
+      <LogicalName>gui.stetic</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Icons\16x16\monobjc.png">
+      <LogicalName>monobjc-16.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Icons\24x24\monobjc.png">
+      <LogicalName>monobjc-24.png</LogicalName>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Icons\128x128\monobjc.png" />
+    <None Include="Icons\32x32\monobjc.png" />
+    <None Include="Icons\48x48\monobjc.png" />
   </ItemGroup>
 </Project>
