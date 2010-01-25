@@ -84,12 +84,8 @@ namespace MonoDevelop.Monobjc
 			if (!(icon.IsNullOrEmpty || icon.ToString () == "."))
 				docRoot["CFBundleIconFile"] = icon.FileName;
 			
-			if (!String.IsNullOrEmpty (proj.MainNibFile.ToString ())) {
-				string mainNib = proj.MainNibFile.ToRelative (proj.BaseDirectory);
-				if (mainNib.EndsWith (".nib") || mainNib.EndsWith (".xib"))
-				    mainNib = mainNib.Substring (0, mainNib.Length - 4).Replace ('\\', '/');
-				docRoot["NSMainNibFile"] = mainNib;
-			};
+			if (!String.IsNullOrEmpty (proj.MainNibFile.ToString ()))
+				docRoot["NSMainNibFile"] = Path.GetFileNameWithoutExtension(proj.MainNibFile.ToString ());
 			
 			doc.Root = docRoot;
 			
