@@ -1,0 +1,46 @@
+<Addin id          = "Monobjc"
+       namespace   = "MonoDevelop"
+       name        = "Monobjc development"
+       author      = "Eric Butler"
+       copyright   = "MIT X11"
+       description = "Support for developing OSX applications using Monobjc."
+       category    = "Mac Development"
+       version     = "0.1">
+
+	<Runtime>
+		<Import assembly="MonoDevelop.Monobjc.dll" />
+		<Import assembly="MonoDevelop.MacDev.dll" />
+	</Runtime>
+	
+	<Dependencies>
+		<Addin id="Core" version="2.2" />
+		<Addin id="Core.Gui" version="2.2" />
+		<Addin id="Projects" version="2.2" />
+		<Addin id="Projects.Gui" version="2.2" />
+		<Addin id="Ide" version="2.2" />
+	</Dependencies>
+
+	<Extension path="/MonoDevelop/ProjectModel/MSBuildItemTypes">
+		<DotNetProjectSubtype
+		  guid="{baf265f1-4f39-46f3-ba25-37173e815138}"
+		  type="MonoDevelop.Monobjc.MonobjcProject" />
+	</Extension>
+
+	<Extension path="/MonoDevelop/ProjectModel/ProjectBindings">
+		<ProjectBinding id="Monobjc" class="MonoDevelop.Monobjc.MonobjcProjectBinding" />
+	</Extension>
+	
+	<Extension path="/MonoDevelop/ProjectModel/SerializableClasses">
+		<DataType class="MonoDevelop.Monobjc.MonobjcProject" />
+		<DataType class="MonoDevelop.Monobjc.MonobjcProjectConfiguration" />
+	</Extension>
+	
+	<Extension path="/MonoDevelop/ProjectModel/ProjectServiceExtensions">
+		<Class class="MonoDevelop.Monobjc.MonobjcBuildExtension" insertafter="MidStep" />
+	</Extension>
+
+  <Extension path = "/MonoDevelop/Core/ExecutionHandlers">
+    <ExecutionHandler id="Monobjc" class = "MonoDevelop.Monobjc.MonobjcExecutionHandler"/>
+  </Extension>
+
+</Addin>
