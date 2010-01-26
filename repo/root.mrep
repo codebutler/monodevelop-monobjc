@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Repository xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Addin>
+    <Url>MonoDevelop.Monobjc_0.1.mpack</Url>
+    <Addin>
+      <Id>Monobjc</Id>
+      <Namespace>MonoDevelop</Namespace>
+      <Name>Monobjc development</Name>
+      <Version>0.1</Version>
+      <BaseVersion />
+      <Author>Eric Butler</Author>
+      <Copyright>MIT X11</Copyright>
+      <Url />
+      <Description>Support for developing OSX applications using Monobjc.</Description>
+      <Category>Mac Development</Category>
+      <Dependencies>
+        <AddinDependency>
+          <AddinId>Core</AddinId>
+          <Version>2.2</Version>
+        </AddinDependency>
+        <AddinDependency>
+          <AddinId>Core.Gui</AddinId>
+          <Version>2.2</Version>
+        </AddinDependency>
+        <AddinDependency>
+          <AddinId>Projects</AddinId>
+          <Version>2.2</Version>
+        </AddinDependency>
+        <AddinDependency>
+          <AddinId>Projects.Gui</AddinId>
+          <Version>2.2</Version>
+        </AddinDependency>
+        <AddinDependency>
+          <AddinId>Ide</AddinId>
+          <Version>2.2</Version>
+        </AddinDependency>
+      </Dependencies>
+      <OptionalDependencies />
+    </Addin>
+  </Addin>
+</Repository>
