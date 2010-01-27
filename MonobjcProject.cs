@@ -161,7 +161,7 @@ namespace MonoDevelop.Monobjc
 		protected override ExecutionCommand CreateExecutionCommand (ConfigurationSelector configSel, DotNetProjectConfiguration configuration)
 		{
 			var conf = (MonobjcProjectConfiguration)configuration;
-			string bundleName = Path.GetFileNameWithoutExtension(conf.OutputAssembly);
+			string bundleName = Path.GetFileNameWithoutExtension(conf.CompiledOutputName);
 			var cmd = new MonobjcExecutionCommand(conf.AppDirectory, bundleName, conf.CommandLineParameters);
 			return cmd;
 		}

@@ -53,7 +53,7 @@ namespace MonoDevelop.Monobjc
 			get {
 				MonobjcProject proj = ParentItem as MonobjcProject;
 				if (proj != null)
-					return OutputDirectory.Combine(proj.Name + ".app");
+					return OutputDirectory.Combine(proj.BundleDisplayName + ".app");
 				return FilePath.Null;
 			}
 		}
@@ -89,7 +89,7 @@ namespace MonoDevelop.Monobjc
 			get {
 				MonobjcProject proj = ParentItem as MonobjcProject;
 				if (proj != null) {
-					string exeName = Path.GetFileNameWithoutExtension(base.OutputAssembly);
+					string exeName = Path.GetFileNameWithoutExtension(base.CompiledOutputName);
 					return MacOSDirectory.Combine(exeName);
 				}
 				return FilePath.Null;				

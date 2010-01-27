@@ -64,7 +64,7 @@ namespace MonoDevelop.Monobjc
 			}
 			monitor.EndTask();
 			
-			string exeName = Path.GetFileNameWithoutExtension(conf.OutputAssembly);
+			string exeName = Path.GetFileNameWithoutExtension(conf.CompiledOutputName);
 			
 			// Write Info.plist into 'Contents' directory
 			
@@ -72,9 +72,9 @@ namespace MonoDevelop.Monobjc
 			var doc = new PlistDocument();
 			var docRoot = new PlistDictionary();			
   			docRoot["CFBundleExecutable"]            = exeName;
-			docRoot["CFBundleName"]                  = proj.Name;
 			docRoot["CFBundleInfoDictionaryVersion"] = "6.0";
 			docRoot["CFBundlePackageType"]           = "APPL";
+			docRoot["CFBundleName"]                  = proj.BundleDisplayName ?? proj.Name;
 			docRoot["CFBundleDisplayName"]           = proj.BundleDisplayName ?? proj.Name;
 			docRoot["CFBundleIdentifier"]            = proj.BundleIdentifier ?? String.Format("com.yourcompany.{0}", proj.Name);
 			docRoot["CFBundleVersion"]               = proj.BundleVersion ?? "1.0";
@@ -140,7 +140,6 @@ namespace MonoDevelop.Monobjc
 				return false;
 			
 			var conf = (MonobjcProjectConfiguration)proj.GetConfiguration(configuration);
-			string exeName = Path.GetFileNameWithoutExtension(conf.OutputAssembly);
 			
 			if (!Directory.Exists(conf.AppDirectory))
 				return true;
@@ -154,15 +153,15 @@ namespace MonoDevelop.Monobjc
 				return true;
 			
 			// Compiled binary
-			if (new FilePair(conf.OutputAssembly, conf.ResourcesDirectory.Combine(exeName)).NeedsBuilding())
+			if (new FilePair(conf.CompiledOutputName, conf.ResourcesDirectory.Combine(conf.CompiledOutputName.FileName)).NeedsBuilding())
 				return true;
 			
 			// References
 			if (BuildUtils.GetReferencesFilePairs(proj, configuration).Where(f => f.NeedsBuilding()).Any())
-				return true;			
+				return true;		
 			
 			//Interface Builder files
-			if (BuildUtils.GetIBFilePairs (proj.Files, conf.AppDirectory).Where (f => f.NeedsBuilding()).Any ())
+			if (BuildUtils.GetIBFilePairs (proj.Files, conf.ResourcesDirectory).Where (f => f.NeedsBuilding()).Any ())
 		        return true;
 			
 			//Content files
