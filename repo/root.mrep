@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Repository xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Addin>
-    <Url>MonoDevelop.Monobjc_0.1.mpack</Url>
+    <Url>MonoDevelop.Monobjc_0.2.mpack</Url>
     <Addin>
       <Id>Monobjc</Id>
       <Namespace>MonoDevelop</Namespace>
       <Name>Monobjc development</Name>
-      <Version>0.1</Version>
+      <Version>0.2</Version>
       <BaseVersion />
       <Author>Eric Butler</Author>
       <Copyright>MIT X11</Copyright>
