@@ -1,0 +1,83 @@
+<?xml version="1.0"?>
+<Template originator="Eric Butler"
+          created="2010/01/31">
+	
+	<!-- Template Header -->
+	<TemplateConfiguration>
+		<_Name>Monobjc Application Project</_Name>
+		<_Category>C#/OSX</_Category>
+		<Icon>md-project-monobjc</Icon>
+		<LanguageName>C#</LanguageName>
+		<_Description>Monobjc application project.</_Description>
+	</TemplateConfiguration>
+	
+	<!-- Actions -->
+	<Actions>
+		<Open filename = "Main.cs"/>
+	</Actions>
+	
+	<!-- Template Content -->
+	<Combine name = "${ProjectName}" directory = ".">
+		<Options>
+			<StartupProject>${ProjectName}</StartupProject>
+		</Options>
+		
+		<Project name = "${ProjectName}" directory = "." type = "Monobjc">
+			<Options>
+				<BundleIdentifier>com.example.${ProjectName}</BundleIdentifier>
+				<BundleDisplayName>${ProjectName}</BundleDisplayName>
+				<BundleVersion>0.1</BundleVersion>
+				<BundleDevelopmentRegion>English</BundleDevelopmentRegion>
+			</Options>
+			
+			<References>
+				<Reference type="Gac" refto="System, Version=2.0.5.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e" />
+				<Reference type="Gac" refto="System.Xml, Version=2.0.5.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e" />
+				<Reference type="Gac" refto="System.Core, Version=2.0.5.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e" />
+			    <Reference type="Gac" refto="Monobjc.Cocoa, Version=1.0.413.0, Culture=neutral, PublicKeyToken=d5a8d181860c16be" />
+		    		<Reference type="Gac" refto="Monobjc, Version=1.0.413.0, Culture=neutral, PublicKeyToken=d5a8d181860c16be" />
+			</References>
+			<Files>
+				<FileTemplateReference TemplateID="MonobjcApplicationXib" />
+				<File name="Main.cs"
+				      AddStandardHeader="True">
+<![CDATA[
+using System;
+using Monobjc;
+using Monobjc.Cocoa;
+
+namespace ${Namespace}
+{
+	public class Application
+	{
+		static void Main (string[] args)
+		{
+            ObjectiveCRuntime.LoadFramework("Cocoa");
+            ObjectiveCRuntime.Initialize();
+
+            NSApplication.Bootstrap();
+            NSApplication.LoadNib("MainMenu.nib");
+            NSApplication.RunApplication();
+		}
+	}
+	
+	[ObjectiveCClass]
+	public class AppDelegate : NSObject
+	{
+        public AppDelegate () { }
+ 
+        public AppDelegate (IntPtr nativePointer) : base(nativePointer) { }
+	
+		[ObjectiveCMessage("applicationDidFinishLaunching:")]
+		public void ApplicationDidFinishLaunching(NSNotification notification)
+		{
+  			// FIXME: Write code here!
+		}
+	}
+}
+]]>
+				</File>
+			</Files>
+		</Project>
+	</Combine>
+</Template>

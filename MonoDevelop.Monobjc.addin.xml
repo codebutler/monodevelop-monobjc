@@ -5,7 +5,7 @@
        copyright   = "MIT X11"
        description = "Support for developing OSX applications using Monobjc."
        category    = "Mac Development"
-       version     = "0.2">
+       version     = "0.3">
 
 	<Runtime>
 		<Import assembly="MonoDevelop.Monobjc.dll" />
@@ -19,6 +19,18 @@
 		<Addin id="Projects.Gui" version="2.2" />
 		<Addin id="Ide" version="2.2" />
 	</Dependencies>
+	
+	<Extension path = "/MonoDevelop/Ide/FileTemplates">
+		<FileTemplate id       = "MonobjcApplicationXib"
+		              resource = "MonobjcApplicationXib.xft.xml"/>
+	</Extension>
+
+	<Extension path = "/MonoDevelop/Ide/ProjectTemplates">
+		<ProjectTemplate id       = "MonobjcProject"
+		                 resource = "MonobjcProject.xpt.xml" />
+		<ProjectTemplate id       = "MonobjcProject-Empty"
+ 		                 resource = "MonobjcProjectEmpty.xpt.xml"/>
+	</Extension>	
 
 	<Extension path="/MonoDevelop/ProjectModel/MSBuildItemTypes">
 		<DotNetProjectSubtype
@@ -54,5 +66,6 @@
 	<Extension path = "/MonoDevelop/Core/StockIcons">
 		<StockIcon stockid = "monobjc" resource = "monobjc-16.png" size="Menu" />
 		<StockIcon stockid = "monobjc" resource = "monobjc-24.png" size="Button" />
+		<StockIcon stockid = "md-project-monobjc" icon = "md-project|res:monobjc-project-overlay.png" size="Dnd" />
 	</Extension>
 </Addin>

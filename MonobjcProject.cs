@@ -143,7 +143,17 @@ namespace MonoDevelop.Monobjc
 		public MonobjcProject (string languageName, ProjectCreateInformation info, XmlElement projectOptions)
 			: base (languageName, info, projectOptions)
 		{
-
+			var tags = new [,] { { "ProjectName", info.ProjectName } };
+			
+			bundleIdentifier = projectOptions.SelectSingleNode("BundleIdentifier").InnerText;
+			bundleIdentifier = StringParserService.Parse(bundleIdentifier, tags);
+			
+			bundleDisplayName = projectOptions.SelectSingleNode("BundleDisplayName").InnerText;
+			bundleDisplayName = StringParserService.Parse(bundleDisplayName, tags);
+			
+			bundleDevelopmentRegion = projectOptions.SelectSingleNode("BundleDevelopmentRegion").InnerText;
+			
+			bundleVersion = projectOptions.SelectSingleNode("BundleVersion").InnerText;
 		}
 		
 		public override SolutionItemConfiguration CreateConfiguration (string name)
@@ -169,6 +179,33 @@ namespace MonoDevelop.Monobjc
 		protected override void OnExecute (IProgressMonitor monitor, ExecutionContext context, ConfigurationSelector configuration)
 		{
 			base.OnExecute (monitor, context, configuration);
+		}
+		
+		#endregion
+		
+		#region CodeBehind files
+		
+		public override string GetDefaultBuildAction (string fileName)
+		{
+			if (Path.GetExtension(fileName) == ".xib")
+				return BuildAction.Page;
+			return base.GetDefaultBuildAction (fileName);
+		}
+				
+		//based on MoonlightProject
+		protected override void OnFileAddedToProject (ProjectFileEventArgs e)
+		{
+			//short-circuit if the project is being deserialised
+			if (Loading) {
+				base.OnFileAddedToProject (e);
+				return;
+			}
+			
+			if (String.IsNullOrEmpty (MainNibFile) && Path.GetFileName (e.ProjectFile.FilePath) == "MainMenu.xib") {
+				MainNibFile = e.ProjectFile.FilePath;
+			}
+			
+			base.OnFileAddedToProject (e);
 		}
 		
 		#endregion

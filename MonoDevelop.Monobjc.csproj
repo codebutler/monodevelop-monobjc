@@ -89,10 +89,25 @@
     <EmbeddedResource Include="Icons\24x24\monobjc.png">
       <LogicalName>monobjc-24.png</LogicalName>
     </EmbeddedResource>
+    <EmbeddedResource Include="Templates\MonobjcProject.xpt.xml">
+      <LogicalName>MonobjcProject.xpt.xml</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Templates\MonobjcProjectEmpty.xpt.xml">
+      <LogicalName>MonobjcProjectEmpty.xpt.xml</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Templates\MonobjcApplicationXib.xft.xml">
+      <LogicalName>MonobjcApplicationXib.xft.xml</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Icons\32x32\monobjc-project-overlay.png">
+      <LogicalName>monobjc-project-overlay.png</LogicalName>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <None Include="Icons\128x128\monobjc.png" />
     <None Include="Icons\32x32\monobjc.png" />
     <None Include="Icons\48x48\monobjc.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Templates\" />
   </ItemGroup>
 </Project>
