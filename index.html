@@ -1,0 +1,97 @@
+<!DOCTYPE html> 
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"> 
+	<head>
+		<title>Monobjc for MonoDevelop</title>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8"> 
+		<style type="text/css">
+		.gist {
+			font-size: 12px;
+		}
+		#page {
+			margin: 0 auto;
+			width: 950px;
+		}
+		.gist-data {
+			height: 200px;
+			overflow: scroll;
+		}
+		.checkboxes {
+			padding-left: 20px;
+		}
+		.checkboxes li {
+			list-style: none;
+		}
+		</style>
+	</head>
+	<body>
+		<a href="http://github.com/codebutler/monodevelop-monobjc"><img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub" /></a> 
+	    
+		<div id="page">
+			<h1>monodevelop-monobjc</h1>
+			<p>Easily create Mac OS X applications from within MonoDevelop using C#!</p>
+
+			<h2>Features</h2>
+			<ul>
+				<li><strong>Easily create projects</strong> &mdash; Project templates get you started quickly.</li>
+				<li><strong>Bundle Creation</strong> &mdash; When you hit build, a Mac .app bundle is automatically created for your project.</li>
+				<li><strong>Xib Compiling</strong> &mdash; Automatically compiles all your xib files into nibs. No manual steps required.</li>
+				<li><strong>Build &amp; Go, Debugging</strong> &mdash; Use the standard MonoDevelop run/debug features for quick testing and bug fixing.</li>
+			</ul>
+
+			<h2>Prerequisites</h2>
+			<ul>
+				<li><a href="http://www.go-mono.com/mono-downloads/download.html">Mono v2.6.1</a></li>
+				<li><a href="http://monodevelop.com/Download">MonoDevelop v2.2.1</a></li>
+				<li><a href="http://www.monobjc.net/index.php?page=downloads">Monobjc 2.0.479.0</a></li>
+			</ul>
+	
+			<h2>Installation Directions</h2>
+			<p>The installation process is currently a bit complicated, it will be improved in the future.</p>
+			<ol>
+				<li>Run <a href="http://gist.github.com/295658">this script</a> from within the directory you extracted Monobjc into.</li>
+			
+				<li>Inside MonoDevelop, select <em>Tools &rarr; Addin-in Manager</em>.</li>
+				<li>Choose <em>Repositories</em> then <em>Add</em>.</li>
+				<li>Enter <code>http://codebutler.github.com/monodevelop-monobjc/repo</code> as the Url and click <em>OK</em>, then close the <em>Repositories</em> dialog.</li>
+				<li>Back in the <em>Add-in Manager</em> dialog, choose <em>Install Add-ins</em>.</li>
+				<li>Click <em>Refresh</em>, then select the new addins to be installed:
+					<ul class="checkboxes">
+						<li>☒ Mac Development &rarr; Monobjc development</li>
+						<li>☒ Debugging &rarr; Mono Soft Debugger Support for Monobjc</li>
+					</ul>
+				</li>
+				<li>Click <em>Forward</em> and finish out the install guide. You're done!</li>
+			</ol>
+			
+			<h2>Usage</h2>
+			
+			<p>To start a new project, click <em>File &rarr; New Solution</em>, select the <em>C# &rarr; OSX</em> category, and choose a project type.</p>
+			
+			<p>To convert an existing project:
+				<ol>
+					<li>Open up the <em>.csproj</em> file in a text editor.</li>
+					<li>Look for a <code>&lt;ProjectTypeGuids&gt;</code> element inside <code>&lt;Project&gt;</code>.
+						<ul>
+							<li>If the element already exists, add the Monobjc GUID to it, separated by a semicolon. For example if you have:
+								<br/>
+								<pre>&lt;ProjectTypeGuids&gt;{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}&lt;/ProjectTypeGuids&gt;</pre>
+
+								Change it to:			<pre>&lt;ProjectTypeGuids&gt;{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}<strong>;{BAF265F1-4F39-46F3-BA25-37173E815138}</strong>&lt;/ProjectTypeGuids&gt;</pre>
+								</li>
+								<li>If the element does not exist, add a new one (inside <code>&lt;Project&gt;</code>):
+						<pre><strong>&lt;ProjectTypeGuids&gt;{BAF265F1-4F39-46F3-BA25-37173E815138}&lt;/ProjectTypeGuids&gt;</strong></pre>
+					</li>
+				</ol>
+			</p>
+			<h2>Author &amp; Copyright</h2>
+			<p>
+				MonoDevelop.Monobjc was created by <a href="http://codebutler.com/">Eric Butler</a>, Copyright &copy; 2010 Eric Butler.
+				<br/>
+				It is based on the MonoDevelop.IPhone project by by Michael Hutchinson, Copyright &copy; 2009 Novell Inc.
+				<br/>
+				<Br/>
+				Released under the <a href="http://en.wikipedia.org/wiki/MIT_License">MIT License</a>.
+			</p>
+		</div>
+	</body>
+</html>
