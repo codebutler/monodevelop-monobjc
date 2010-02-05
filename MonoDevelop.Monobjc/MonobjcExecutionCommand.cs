@@ -30,6 +30,7 @@
 // THE SOFTWARE.
 
 using System;
+using System.Collections.Generic;
 using MonoDevelop.Core;
 using MonoDevelop.Core.Execution;
 using MonoDevelop.Core.Assemblies;
@@ -41,20 +42,32 @@ namespace MonoDevelop.Monobjc
 		FilePath appDirectory;
 		string appName;
 		string arguments;
+		bool debugMode;
 		
-		public MonobjcExecutionCommand (string appDirectory, string appName, string arguments)
+		public MonobjcExecutionCommand (string appDirectory, string appName, string arguments, bool debugMode)
 		{
 			this.appDirectory = appDirectory;
 			this.appName      = appName;
 			this.arguments    = arguments;
+			this.debugMode    = debugMode;
 		}
-		
+
+		public IList<string> UserAssemblyPaths { get; set; }
+
 		public override string CommandString {
 			get { return this.appDirectory.Combine("Contents").Combine("MacOS").Combine(this.appName); }
 		}
 		
+		public string AppName {
+			get { return appName; }
+		}
+		
 		public string Arguments {
 			get { return arguments; }
+		}
+		
+		public bool DebugMode { 
+			get { return debugMode; }
 		}
 	}
 }

@@ -98,6 +98,8 @@ namespace MonoDevelop.Monobjc
 			// Copy project binary into 'Resources' directory
 			monitor.BeginTask("Copying application binary", 0);
 			File.Copy(conf.CompiledOutputName, conf.ResourcesDirectory.Combine(conf.CompiledOutputName.FileName), true);
+			if (File.Exists(conf.CompiledOutputName + ".mdb"))
+				File.Copy(conf.CompiledOutputName + ".mdb", conf.ResourcesDirectory.Combine(conf.CompiledOutputName.FileName + ".mdb"), true);			
 			monitor.EndTask();
 			
 			// Copy references into 'Resources' directory

@@ -172,7 +172,11 @@ namespace MonoDevelop.Monobjc
 		{
 			var conf = (MonobjcProjectConfiguration)configuration;
 			string bundleName = Path.GetFileNameWithoutExtension(conf.CompiledOutputName);
-			var cmd = new MonobjcExecutionCommand(conf.AppDirectory, bundleName, conf.CommandLineParameters);
+			var cmd = new MonobjcExecutionCommand(conf.AppDirectory, bundleName, conf.CommandLineParameters, conf.DebugMode);
+			
+			// FIXME: Should this be the assembly inside the .app instead?
+			cmd.UserAssemblyPaths = GetUserAssemblyPaths(configSel);
+			
 			return cmd;
 		}
 		

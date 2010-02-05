@@ -1,7 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 10.00
 # Visual Studio 2008
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MonoDevelop.Monobjc", "MonoDevelop.Monobjc.csproj", "{F0C42E2A-E5BD-4D97-A2B0-884E665E3587}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MonoDevelop.Monobjc", "MonoDevelop.Monobjc\MonoDevelop.Monobjc.csproj", "{F0C42E2A-E5BD-4D97-A2B0-884E665E3587}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MonoDevelop.Debugger.Soft.Monobjc", "MonoDevelop.Debugger.Soft.Monobjc\MonoDevelop.Debugger.Soft.Monobjc.csproj", "{A253B5A2-6CE5-4E7A-9A68-01F11DC5D57D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -9,6 +11,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A253B5A2-6CE5-4E7A-9A68-01F11DC5D57D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A253B5A2-6CE5-4E7A-9A68-01F11DC5D57D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A253B5A2-6CE5-4E7A-9A68-01F11DC5D57D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A253B5A2-6CE5-4E7A-9A68-01F11DC5D57D}.Release|Any CPU.Build.0 = Release|Any CPU
 		{F0C42E2A-E5BD-4D97-A2B0-884E665E3587}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{F0C42E2A-E5BD-4D97-A2B0-884E665E3587}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F0C42E2A-E5BD-4D97-A2B0-884E665E3587}.Release|Any CPU.ActiveCfg = Release|Any CPU
