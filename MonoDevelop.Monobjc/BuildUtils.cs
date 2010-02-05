@@ -66,7 +66,7 @@ namespace MonoDevelop.Monobjc
       var conf = (MonobjcProjectConfiguration) proj.GetConfiguration(configuration);
       return proj.References
         .Where(r => r.LocalCopy)
-        .Where(r => r.ReferenceType == ReferenceType.Assembly)
+        .Where(r => r.ReferenceType == ReferenceType.Assembly || r.ReferenceType == ReferenceType.Project)
         .Select(r => {
           var filePath = new FilePath(r.GetReferencedFileNames(configuration)[0]);
           var destFileName = conf.ResourcesDirectory.Combine(filePath.FileName);
