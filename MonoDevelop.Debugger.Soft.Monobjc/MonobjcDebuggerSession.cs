@@ -73,42 +73,33 @@ namespace MonoDevelop.Debugger.Soft.Monobjc
 				EndSession();
 				process = null;
 			};
-			
-			TargetExited += delegate {
-				EndProcess();
-			};
 		}
 		
 		protected override void OnConnected ()
 		{
 			base.OnConnected ();
 		}
-
-		protected override void EndSession ()
+				
+		protected override void OnExit ()
 		{
-			base.EndSession();
-			EndProcess();
+			// FIXME: base.OnExit() calls vm.Exit(0) which does nothing!
+			// Eventually it calls EnsureExited() which forcefully kills the process.
+			base.OnExit ();
 		}
-		
+
+		protected override void EnsureExited ()
+		{
+			try {
+				if (process != null && !process.HasExited)
+					process.Kill ();
+			} catch (Exception ex) {
+				LoggingService.LogError ("Error force-terminating soft debugger process", ex);
+			}
+		}
+
 		protected override string GetListenMessage (RemoteDebuggerStartInfo dsi)
 		{
 			return String.Format("Waiting for app to connect to: {0}:{1}", dsi.Address, dsi.DebugPort);
-		}
-		
-		void EndProcess ()
-		{
-			if (process == null)
-				return;
-			if (!process.HasExited) {
-				try {
-					process.StandardInput.WriteLine ();
-				} catch {}
-			}
-			GLib.Timeout.Add (10000, delegate {
-				if (process != null && !process.HasExited)
-					process.Kill ();
-				return false;
-			});
 		}
 	}
 	
