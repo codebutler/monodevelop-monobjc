@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Repository xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Addin>
-    <Url>MonoDevelop.Debugger.Soft.Monobjc_0.4.mpack</Url>
+    <Url>MonoDevelop.Debugger.Soft.Monobjc_0.5.mpack</Url>
     <Addin>
       <Id>MonoDevelop.Debugger.Soft.Monobjc</Id>
       <Namespace />
       <Name>Mono Soft Debugger Support for Monobjc</Name>
-      <Version>0.4</Version>
+      <Version>0.5</Version>
       <BaseVersion />
       <Author>Eric Butler</Author>
       <Copyright>MIT X11</Copyright>
@@ -28,19 +28,19 @@
         </AddinDependency>
         <AddinDependency>
           <AddinId>MonoDevelop.Monobjc</AddinId>
-          <Version>0.4</Version>
+          <Version>0.5</Version>
         </AddinDependency>
       </Dependencies>
       <OptionalDependencies />
     </Addin>
   </Addin>
   <Addin>
-    <Url>MonoDevelop.Monobjc_0.4.mpack</Url>
+    <Url>MonoDevelop.Monobjc_0.5.mpack</Url>
     <Addin>
       <Id>Monobjc</Id>
       <Namespace>MonoDevelop</Namespace>
       <Name>Monobjc development</Name>
-      <Version>0.4</Version>
+      <Version>0.5</Version>
       <BaseVersion />
       <Author>Eric Butler</Author>
       <Copyright>MIT X11</Copyright>
