@@ -81,7 +81,7 @@ namespace MonoDevelop.Monobjc.Gui
 			mainNibPicker.SelectedFile = proj.MainNibFile.ToString () ?? "";
 			
 			appIconPicker.Project = proj;
-			appIconPicker.DefaultFilter = "*.png";
+			appIconPicker.DefaultFilter = "*.icns";
 			appIconPicker.DialogTitle = GettextCatalog.GetString ("Select application icon...");
 			appIconPicker.SelectedFile = proj.BundleIcon.ToString () ?? "";
 		}

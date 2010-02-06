@@ -201,8 +201,12 @@ namespace MonoDevelop.Monobjc
 				return result;
 			
 			BuildUtils.CompileXibs(monitor, buildData, result);
+			if (result.ErrorCount > 0)
+				return result;
 			
-			BuildUtils.CopyContentFiles(monitor, buildData);
+			BuildUtils.CopyContentFiles(proj, monitor, buildData, result);
+			if (result.ErrorCount > 0)
+				return result;
 			
 			return result;
 		}
