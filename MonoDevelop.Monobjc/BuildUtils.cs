@@ -68,15 +68,22 @@ namespace MonoDevelop.Monobjc
 		public static IEnumerable<FilePair> GetReferencesFilePairs (MonobjcProject proj, ConfigurationSelector configuration)
 		{
 			var conf = (MonobjcProjectConfiguration)proj.GetConfiguration(configuration);
-			return proj.References
+			
+			var refTypes = new object[] { ReferenceType.Assembly, ReferenceType.Project };
+			
+			var refs = proj.References
 				.Where(r => r.LocalCopy)
-				.Where(r => r.ReferenceType == ReferenceType.Assembly || r.ReferenceType == ReferenceType.Project)
-				.Select(r => {
-					var filePath = new FilePath(r.GetReferencedFileNames(configuration)[0]);
-					var destFileName = conf.ResourcesDirectory.Combine(filePath.FileName);
-					return new FilePair(filePath, destFileName);
-				}
-			);
+				.Where(r => refTypes.Contains(r.ReferenceType));
+			
+			foreach (var r in refs) {
+				var filePath = new FilePath(r.GetReferencedFileNames(configuration)[0]);
+				var destFileName = conf.ResourcesDirectory.Combine(filePath.FileName);
+				
+				yield return new FilePair(filePath, destFileName);
+				
+				if (File.Exists(filePath + ".mdb"))
+					yield return new FilePair(filePath + ".mdb", destFileName + ".mdb");
+			}
 		}
 
 		public static void CompileXibs (IProgressMonitor monitor, BuildData buildData, BuildResult result)
