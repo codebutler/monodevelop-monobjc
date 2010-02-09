@@ -63,6 +63,9 @@ namespace MonoDevelop.Debugger.Soft.Monobjc
 			};
 			psi.EnvironmentVariables["MONO_OPTIONS"] = String.Format("--debug --debugger-agent=transport=dt_socket,address={0}:{1}", dsi.Address, dsi.DebugPort);
 			
+			foreach (var kv in cmd.EnvironmentVariables)
+				psi.EnvironmentVariables[kv.Key] = kv.Value;
+			
 			process = System.Diagnostics.Process.Start(psi);
 			
 			ConnectOutput(process.StandardOutput, false);

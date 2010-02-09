@@ -43,12 +43,15 @@ namespace MonoDevelop.Monobjc
 		string appName;
 		string arguments;
 		bool debugMode;
+		Dictionary<string, string> envVars;
 		
-		public MonobjcExecutionCommand (string appDirectory, string appName, string arguments, bool debugMode)
+		public MonobjcExecutionCommand (string appDirectory, string appName, string arguments, 
+		                                Dictionary<string, string> envVars, bool debugMode)
 		{
 			this.appDirectory = appDirectory;
 			this.appName      = appName;
 			this.arguments    = arguments;
+			this.envVars      = envVars;
 			this.debugMode    = debugMode;
 		}
 
@@ -64,6 +67,10 @@ namespace MonoDevelop.Monobjc
 		
 		public string Arguments {
 			get { return arguments; }
+		}
+		
+		public Dictionary<string, string> EnvironmentVariables {
+			get { return envVars; }
 		}
 		
 		public bool DebugMode { 

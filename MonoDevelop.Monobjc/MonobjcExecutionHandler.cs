@@ -45,8 +45,13 @@ namespace MonoDevelop.Monobjc
 		public IProcessAsyncOperation Execute (ExecutionCommand command, IConsole console)
 		{
 			var cmd = (MonobjcExecutionCommand)command;
-			return Runtime.ProcessService.StartConsoleProcess(cmd.CommandString, cmd.Arguments, 
-			                                                  null, console, null);
+			
+			return Runtime.ProcessService.StartConsoleProcess(cmd.CommandString, 
+			                                                  cmd.Arguments, 
+			                                                  null, 
+			                                                  cmd.EnvironmentVariables, 
+			                                                  console, 
+			                                                  null);
 		}
 	}
 }
