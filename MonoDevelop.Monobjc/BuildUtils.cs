@@ -60,9 +60,8 @@ namespace MonoDevelop.Monobjc
 		public static IEnumerable<FilePair> GetContentFilePairs (IEnumerable<ProjectFile> allItems, string outputRoot)
 		{
 			return allItems
-				.OfType<ProjectFile>()
 				.Where(pf => pf.BuildAction == BuildAction.Content)
-				.Select(pf => new FilePair(pf.FilePath, pf.RelativePath.ToAbsolute(outputRoot)));
+				.Select(pf => new FilePair(pf.FilePath, Path.Combine(outputRoot, pf.FilePath.FileName)));
 		}
 
 		public static IEnumerable<FilePair> GetReferencesFilePairs (MonobjcProject proj, ConfigurationSelector configuration)
@@ -120,7 +119,7 @@ namespace MonoDevelop.Monobjc
 			
 			// Copy 'content' files into 'Resources' directory
 			var contentFiles = BuildUtils.GetContentFilePairs(buildData.Items.OfType<ProjectFile>(), resDir)
-				.Where(f => f.NeedsBuilding())
+			 	.Where(f => f.NeedsBuilding())
 				.ToList();
 			
 			if (!proj.BundleIcon.IsNullOrEmpty) {
