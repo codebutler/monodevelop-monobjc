@@ -13,7 +13,7 @@
 	
 	<!-- Actions -->
 	<Actions>
-		<Open filename = "Main.cs"/>
+		<Open filename = "AppDelegate.cs"/>
 	</Actions>
 	
 	<!-- Template Content -->
@@ -60,13 +60,31 @@ namespace ${Namespace}
             NSApplication.RunApplication();
 		}
 	}
+}
+]]>
+				</File>
 	
+				<File name="AppDelegate.cs"
+				      AddStandardHeader="True">
+<![CDATA[
+using System;
+using Monobjc;
+using Monobjc.Cocoa;
+
+namespace ${Namespace}
+{
 	[ObjectiveCClass]
 	public class AppDelegate : NSObject
 	{
         public AppDelegate () { }
  
         public AppDelegate (IntPtr nativePointer) : base(nativePointer) { }
+	
+		[ObjectiveCMessage("awakeFromNib")]
+		public void AwakeFromNib()
+		{
+  			// FIXME: Write code here!
+		}
 	
 		[ObjectiveCMessage("applicationDidFinishLaunching:")]
 		public void ApplicationDidFinishLaunching(NSNotification notification)
