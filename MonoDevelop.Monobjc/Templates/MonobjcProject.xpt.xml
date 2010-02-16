@@ -5,7 +5,7 @@
 	<!-- Template Header -->
 	<TemplateConfiguration>
 		<_Name>Monobjc Application Project</_Name>
-		<_Category>C#/OSX</_Category>
+		<_Category>C#/Mac OS X</_Category>
 		<Icon>md-project-monobjc</Icon>
 		<LanguageName>C#</LanguageName>
 		<_Description>Monobjc application project.</_Description>
@@ -34,8 +34,8 @@
 				<Reference type="Gac" refto="System, Version=2.0.5.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e" />
 				<Reference type="Gac" refto="System.Xml, Version=2.0.5.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e" />
 				<Reference type="Gac" refto="System.Core, Version=2.0.5.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e" />
-				<Reference type="Gac" refto="Monobjc.Cocoa, Version=2.0.476.0, Culture=neutral, PublicKeyToken=d5a8d181860c16be" />
-				<Reference type="Gac" refto="Monobjc, Version=2.0.476.0, Culture=neutral, PublicKeyToken=d5a8d181860c16be" />
+				<Reference type="Gac" refto="Monobjc, Version=2.0.0.0, Culture=neutral, PublicKeyToken=d5a8d181860c16be" SpecificVersion="false" />
+				<Reference type="Gac" refto="Monobjc.Cocoa, Version=2.0.0.0, Culture=neutral, PublicKeyToken=d5a8d181860c16be" SpecificVersion="false" />
 			</References>
 			<Files>
 				<FileTemplateReference TemplateID="MonobjcApplicationXib" />

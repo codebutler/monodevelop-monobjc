@@ -4,7 +4,7 @@
 	<!-- Template Header -->
 	<TemplateConfiguration>
 		<_Name>Main Window Definition</_Name>
-		<_Category>OSX</_Category>
+		<_Category>Mac OS X</_Category>
 		<Icon>res:xib-template-application.png</Icon>
 		<LanguageName>C#</LanguageName>
 		<ProjectType>Monobjc</ProjectType>

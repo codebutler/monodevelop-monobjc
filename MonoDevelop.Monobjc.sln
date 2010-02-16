@@ -21,6 +21,6 @@ Global
 		{F0C42E2A-E5BD-4D97-A2B0-884E665E3587}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = MonoDevelop.Monobjc.csproj
+		StartupItem = MonoDevelop.Monobjc\MonoDevelop.Monobjc.csproj
 	EndGlobalSection
 EndGlobal
