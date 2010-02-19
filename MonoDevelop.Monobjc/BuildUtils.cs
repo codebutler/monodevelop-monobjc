@@ -42,11 +42,22 @@ namespace MonoDevelop.Monobjc
 {
 	public static class BuildUtils
 	{
+		public static bool IsXIBFile(ProjectFile file)
+		{
+			return file.FilePath.Extension == ".xib" && 
+				file.BuildAction == BuildAction.Page;
+		}
+		
+		public static bool IsMonobjcReference(ProjectReference reference)
+		{
+			return reference.Reference.StartsWith("Monobjc");
+		}
+		
 		public static IEnumerable<FilePair> GetIBFilePairs (IEnumerable<ProjectFile> allItems, string outputRoot)
 		{
 			return allItems
 				.OfType<ProjectFile>()
-				.Where(pf => pf.BuildAction == BuildAction.Page && pf.FilePath.Extension == ".xib")
+				.Where(IsXIBFile)
 				.Select(pf => {
 					string[] splits = ((string)pf.RelativePath).Split(Path.DirectorySeparatorChar);
 					FilePath name = splits.Last();

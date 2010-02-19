@@ -1,11 +1,11 @@
 <Addin id = "MonoDevelop.Debugger.Soft.Monobjc"
-       name	     = "Mono Soft Debugger Support for Monobjc"
-       author	 = "Eric Butler"
-       url       = "http://codebutler.github.com/monodevelop-monobjc/"
+       name        = "Mono Soft Debugger Support for Monobjc"
+       author      = "Eric Butler"
+       url         = "http://codebutler.github.com/monodevelop-monobjc/"
        description = "Mono Soft Debugger Support for Monobjc"
        copyright   = "MIT X11"
-       category = "Debugging"
-       version   = "0.6">
+       category    = "Debugging"
+       version     = "0.7">
 
 	<Runtime>
 		<Import assembly="MonoDevelop.Debugger.Soft.Monobjc.dll" />

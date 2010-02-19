@@ -41,8 +41,7 @@
 				<FileTemplateReference TemplateID="MonobjcApplicationXib" />
 				<File name="Main.cs"
 				      AddStandardHeader="True">
-<![CDATA[
-using System;
+				      <![CDATA[using System;
 using Monobjc;
 using Monobjc.Cocoa;
 
@@ -66,30 +65,38 @@ namespace ${Namespace}
 	
 				<File name="AppDelegate.cs"
 				      AddStandardHeader="True">
-<![CDATA[
-using System;
+				      <![CDATA[using System;
 using Monobjc;
 using Monobjc.Cocoa;
 
 namespace ${Namespace}
 {
 	[ObjectiveCClass]
-	public class AppDelegate : NSObject
+	public partial class AppDelegate : NSObject
 	{
-        public AppDelegate () { }
- 
-        public AppDelegate (IntPtr nativePointer) : base(nativePointer) { }
-	
-		[ObjectiveCMessage("awakeFromNib")]
-		public void AwakeFromNib()
+		public AppDelegate ()
 		{
-  			// FIXME: Write code here!
 		}
-	
-		[ObjectiveCMessage("applicationDidFinishLaunching:")]
-		public void ApplicationDidFinishLaunching(NSNotification notification)
+
+		public AppDelegate (IntPtr nativePointer) : base(nativePointer)
 		{
-  			// FIXME: Write code here!
+		}
+
+		[ObjectiveCMessage("awakeFromNib")]
+		public void AwakeFromNib ()
+		{
+			// FIXME: Write code here!
+		}
+
+		[ObjectiveCMessage("applicationDidFinishLaunching:")]
+		public void ApplicationDidFinishLaunching (NSNotification notification)
+		{
+			// FIXME: Write code here!
+		}
+		
+		partial void ButtonClicked (Id sender)
+		{
+			// FIXME: Write code here!
 		}
 	}
 }

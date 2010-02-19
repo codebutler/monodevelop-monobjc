@@ -5,11 +5,12 @@
        copyright   = "MIT X11"
        description = "Support for developing OSX applications using Monobjc."
        category    = "Mac Development"
-       version     = "0.6">
+       version     = "0.7">
 
 	<Runtime>
 		<Import assembly="MonoDevelop.Monobjc.dll" />
 		<Import assembly="MonoDevelop.MacDev.dll" />
+		<Import assembly="Monobjc.Tools.dll" />
 	</Runtime>
 	
 	<Dependencies>

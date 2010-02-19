@@ -32,15 +32,20 @@
 using System;
 using System.Xml;
 using System.IO;
+using System.Threading;
+using System.Collections.Generic;
 using MonoDevelop.Core;
 using MonoDevelop.Projects;
 using MonoDevelop.Core.Serialization;
 using MonoDevelop.Core.Execution;
+using MonoDevelop.DesignerSupport;
 
 namespace MonoDevelop.Monobjc
 {
 	public class MonobjcProject : DotNetProject
 	{
+		private static String[] groupedExtensions = new []{".xib"};
+		
 		#region Properties
 		
 		[ProjectPathItemProperty ("MainNibFile")]
@@ -185,7 +190,7 @@ namespace MonoDevelop.Monobjc
 			return cmd;
 		}
 		
-		protected override void OnExecute (IProgressMonitor monitor, ExecutionContext context, ConfigurationSelector configuration)
+		protected override void OnExecute (IProgressMonitor monitor, MonoDevelop.Projects.ExecutionContext context, ConfigurationSelector configuration)
 		{
 			base.OnExecute (monitor, context, configuration);
 		}
@@ -210,13 +215,34 @@ namespace MonoDevelop.Monobjc
 				return;
 			}
 			
+			// Assign main NIB file
 			if (String.IsNullOrEmpty (MainNibFile) && Path.GetFileName (e.ProjectFile.FilePath) == "MainMenu.xib") {
 				MainNibFile = e.ProjectFile.FilePath;
 			}
 			
+			// Collect dependencies
+			var filesToAdd = MonoDevelop.DesignerSupport.CodeBehind.GuessDependencies(this, e.ProjectFile, groupedExtensions);
+			
 			base.OnFileAddedToProject (e);
+			
+			// Add dependencies
+			if (filesToAdd != null) {
+				foreach(var file in filesToAdd) {
+					AddFile(file);
+				}
+			}
 		}
 		
+		protected override void OnFileChangedInProject(ProjectFileEventArgs e)
+		{
+			if (BuildUtils.IsXIBFile(e.ProjectFile)) {
+				ThreadPool.QueueUserWorkItem(delegate {
+					CodeBehind.GenerateXibDesignCode(e.ProjectFile);
+				});
+			}
+			base.OnFileChangedInProject(e);
+		}
+				
 		#endregion
 	}
 }

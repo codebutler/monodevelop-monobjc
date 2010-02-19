@@ -57,6 +57,13 @@
     <Reference Include="MonoDevelop.Projects.Gui, Version=2.2.0.0, Culture=neutral">
       <Package>monodevelop</Package>
     </Reference>
+    <Reference Include="MonoDevelop.DesignerSupport, Version=2.2.0.0, Culture=neutral">
+      <Package>monodevelop-core-addins</Package>
+    </Reference>
+    <Reference Include="Monobjc.Tools, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\contrib\Monobjc.Tools.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AssemblyInfo.cs" />
@@ -70,15 +77,13 @@
     <Compile Include="Gui\MonobjcOptionsPanel.cs" />
     <Compile Include="gtk-gui\generated.cs" />
     <Compile Include="gtk-gui\MonoDevelop.Monobjc.Gui.MonobjcOptionsPanelWidget.cs" />
+    <Compile Include="CodeBehindGenerator.cs" />
+    <Compile Include="CodeBehind.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <EmbeddedResource Include="LaunchScript.sh">
       <LogicalName>LaunchScript.sh</LogicalName>
-    </EmbeddedResource>
-    <EmbeddedResource Include="MonoDevelop.Monobjc.addin.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <LogicalName>MonoDevelop.Monobjc.addin.xml</LogicalName>
     </EmbeddedResource>
     <EmbeddedResource Include="gtk-gui\gui.stetic">
       <LogicalName>gui.stetic</LogicalName>
@@ -100,6 +105,10 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Icons\32x32\monobjc-project-overlay.png">
       <LogicalName>monobjc-project-overlay.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MonoDevelop.Monobjc.addin.xml">
+      <LogicalName>MonoDevelop.Monobjc.addin.xml</LogicalName>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

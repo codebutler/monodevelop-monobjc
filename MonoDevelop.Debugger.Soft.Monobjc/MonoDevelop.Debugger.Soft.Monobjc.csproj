@@ -73,6 +73,7 @@
   <ItemGroup>
     <EmbeddedResource Include="MonoDevelop.Debugger.Soft.Monobjc.addin.xml">
       <LogicalName>Manifest.addin.xml</LogicalName>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
