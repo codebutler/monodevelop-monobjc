@@ -71,9 +71,8 @@
     <Compile Include="MonobjcDebuggerSession.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Manifest.addin.xml">
+    <EmbeddedResource Include="MonoDevelop.Debugger.Soft.Monobjc.addin.xml">
       <LogicalName>Manifest.addin.xml</LogicalName>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
