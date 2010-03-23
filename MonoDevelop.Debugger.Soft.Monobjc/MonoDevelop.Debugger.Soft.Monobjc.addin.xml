@@ -5,7 +5,7 @@
        description = "Mono Soft Debugger Support for Monobjc"
        copyright   = "MIT X11"
        category    = "Debugging"
-       version     = "0.7">
+       version     = "0.8">
 
 	<Runtime>
 		<Import assembly="MonoDevelop.Debugger.Soft.Monobjc.dll" />
