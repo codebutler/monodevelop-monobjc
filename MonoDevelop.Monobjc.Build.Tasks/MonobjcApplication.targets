@@ -1,0 +1,44 @@
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <UsingTask TaskName="MonoDevelop.Monobjc.Build.Tasks.CreatePList"       
+         AssemblyFile="MonoDevelop.Monobjc.Build.Tasks.dll" />
+  
+  <UsingTask TaskName="MonoDevelop.Monobjc.Build.Tasks.WriteLauncher"
+         AssemblyFile="MonoDevelop.Monobjc.Build.Tasks.dll" />
+
+   <UsingTask TaskName="MonoDevelop.Monobjc.Build.Tasks.CompileXibs"
+          AssemblyFile="MonoDevelop.Monobjc.Build.Tasks.dll" />
+
+  <PropertyGroup>
+    <AppBundleDir>$(OutDir)\$(BundleDisplayName).app</AppBundleDir>
+    <MacOSDir>$(AppBundleDir)\Contents\MacOS</MacOSDir>
+    <ResourcesDir>$(AppBundleDir)\Contents\Resources</ResourcesDir>
+    <BuildDependsOn>
+      $(BuildDependsOn);
+      CreateAppBundle
+    </BuildDependsOn>
+  </PropertyGroup>
+      
+  <Target Name="CreateAppBundle">
+    <MakeDir Directories="$(MacOSDir);$(ResourcesDir)" />
+    
+    <CreatePList FileName="$(AppBundleDir)\Contents\Info.plist"
+                 ExeName="$(AssemblyName)" 
+                 DisplayName="$(BundleDisplayName)"
+                 Identifier="$(BundleIdentifier)"
+                 Version="$(BundleVersion)"
+                 DevelopmentRegion="$(DevelopmentRegion)" 
+                 MainNibFile="$(MainNibFile)"
+                 Icon="$(BundleIcon)" />
+    
+    <Copy SourceFiles="$(OutputPath)\$(AssemblyName).exe;$(OutputPath)\$(AssemblyName).exe.mdb"
+          DestinationFolder="$(ResourcesDir)" />
+
+    <Copy SourceFiles="@(ReferenceCopyLocalPaths)" DestinationFolder="$(ResourcesDir)" /> 
+    
+    <CompileXibs Files="@(Page)" DestinationFolder="$(ResourcesDir)" />
+    
+    <Copy SourceFiles="@(Content)" DestinationFolder="$(ResourcesDir)" />
+    
+    <WriteLauncher FileName="$(MacOSDir)\$(AssemblyName)" />
+  </Target>
+</Project>

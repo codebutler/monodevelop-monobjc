@@ -64,6 +64,7 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\contrib\Monobjc.Tools.dll</HintPath>
     </Reference>
+    <Reference Include="Mono.Addins, Version=0.4.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AssemblyInfo.cs" />
@@ -79,6 +80,7 @@
     <Compile Include="gtk-gui\MonoDevelop.Monobjc.Gui.MonobjcOptionsPanelWidget.cs" />
     <Compile Include="CodeBehindGenerator.cs" />
     <Compile Include="CodeBehind.cs" />
+    <Compile Include="MonobjcMSBuildImportProvider.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
