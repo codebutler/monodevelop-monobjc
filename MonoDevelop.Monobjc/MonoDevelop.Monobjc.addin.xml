@@ -5,7 +5,7 @@
        copyright   = "MIT X11"
        description = "Support for developing OSX applications using Monobjc."
        category    = "Mac Development"
-       version     = "0.7">
+       version     = "0.8">
 
 	<Runtime>
 		<Import assembly="MonoDevelop.Monobjc.dll" />
@@ -23,7 +23,7 @@
 	
 	<Extension path = "/MonoDevelop/Ide/FileTemplates">
 		<FileTemplate id       = "MonobjcApplicationXib"
-		              resource = "MonobjcApplicationXib.xft.xml"/>
+		              resource = "MonobjcApplicationXib.xft.xml" />
 	</Extension>
 
 	<Extension path = "/MonoDevelop/Ide/ProjectTemplates">
