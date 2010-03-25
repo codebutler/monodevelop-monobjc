@@ -79,23 +79,11 @@ namespace MonoDevelop.Monobjc
 		{
 			var conf = (MonobjcProjectConfiguration)proj.GetConfiguration(configuration);
 			
-			var refTypes = new object[] { ReferenceType.Assembly, ReferenceType.Project };
-			
-			var refs = proj.References
-				.Where(r => r.LocalCopy)
-				.Where(r => refTypes.Contains(r.ReferenceType));
-			
-			foreach (var r in refs) {
-				var filePath = new FilePath(r.GetReferencedFileNames(configuration)[0]);
-				var destFileName = conf.ResourcesDirectory.Combine(filePath.FileName);
-				
-				yield return new FilePair(filePath, destFileName);
-				
-				if (File.Exists(filePath + ".mdb"))
-					yield return new FilePair(filePath + ".mdb", destFileName + ".mdb");
+			foreach (var pair in GetReferenceFilePairsForProject(proj, configuration, conf)) {
+				yield return pair;
 			}
 		}
-
+		
 		public static void CompileXibs (IProgressMonitor monitor, BuildData buildData, BuildResult result)
 		{
 			var cfg = (MonobjcProjectConfiguration)buildData.Configuration;
@@ -194,6 +182,36 @@ namespace MonoDevelop.Monobjc
 			
 			return exitCode;
 		}
+		
+		
+		static IEnumerable<FilePair> GetReferenceFilePairsForProject (DotNetProject proj, ConfigurationSelector configuration, MonobjcProjectConfiguration conf) 
+		{
+			var refTypes = new object[] { ReferenceType.Assembly, ReferenceType.Project };
+		
+			var refs = proj.References
+				.Where(r => r.LocalCopy)
+				.Where(r => refTypes.Contains(r.ReferenceType));
+			
+			foreach (var r in refs) {
+				var filePath = new FilePath(r.GetReferencedFileNames(configuration)[0]);
+				var destFileName = conf.ResourcesDirectory.Combine(filePath.FileName);
+				
+				yield return new FilePair(filePath, destFileName);
+				
+				if (File.Exists(filePath + ".mdb"))
+					yield return new FilePair(filePath + ".mdb", destFileName + ".mdb");
+				
+				if (r.ReferenceType == ReferenceType.Project) {
+					var childProj = r.OwnerProject.ParentSolution.FindProjectByName(r.Reference) as DotNetProject;
+					if (childProj != null) {
+						foreach (var pair in GetReferenceFilePairsForProject(childProj, configuration, conf)) {
+							yield return pair;
+						}
+					}
+				}
+			}
+		}
+
 	}
 
 	public struct FilePair

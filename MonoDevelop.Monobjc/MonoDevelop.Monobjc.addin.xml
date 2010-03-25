@@ -5,7 +5,7 @@
        copyright   = "MIT X11"
        description = "Support for developing OSX applications using Monobjc."
        category    = "Mac Development"
-       version     = "0.8">
+       version     = "0.9">
 
 	<Runtime>
 		<Import assembly="MonoDevelop.Monobjc.dll" />
